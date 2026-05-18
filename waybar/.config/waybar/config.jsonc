@@ -12,7 +12,7 @@
         // "hyprland/window"
     ],
      "modules-center": [
-        "hyprland/workspaces"
+        "custom/workspaces"
     ],
     "modules-right": [
         // "idle_inhibitor",
@@ -23,13 +23,19 @@
         "battery",
         "custom/power"
     ],
+    "custom/workspaces": {
+        "exec": "~/.config/waybar/scripts/workspace",
+        "return-type": "json",
+        "interval": 1,
+        "escape": false
+    },
     // Modules configuration
      "hyprland/workspaces": {
          "disable-scroll": true,
          "all-outputs": true,
          "warp-on-scroll": false,
          "on-click": "activate",
-         "format": "{name}",
+         "format": "{windows}",
          "format-icons": {
              "urgent": "",
              "active": "",

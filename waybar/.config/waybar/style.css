@@ -103,6 +103,12 @@ button:hover {
     margin: 0 4px;
 }
 
+#custom-workspaces {
+  padding: 0 10px;
+  font-size: 16px;
+}
+
+
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
     margin-left: 0;

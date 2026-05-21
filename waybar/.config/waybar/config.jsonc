@@ -11,7 +11,7 @@
         "hyprland/language"
         // "hyprland/window"
     ],
-     "modules-center": [
+    "modules-center": [
         "custom/workspaces"
     ],
     "modules-right": [
@@ -24,10 +24,9 @@
         "custom/power"
     ],
     "custom/workspaces": {
-        "exec": "~/.config/waybar/scripts/workspace",
-        "return-type": "json",
-        "interval": 1,
-        "escape": false
+       "exec": "~/.config/waybar/scripts/workspace",
+       "return-type": "json",
+       "restart-interval": 1
     },
     // Modules configuration
      "hyprland/workspaces": {

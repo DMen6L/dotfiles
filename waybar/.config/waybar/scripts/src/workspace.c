@@ -1,179 +1,258 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <json-c/json.h>
+#include <sys/socket.h>
+#include <sys/un.h>
+#include <unistd.h>
 
 typedef struct {
-    int id;
-    const char *name;
-    const char *icon;
-    int active;
+  int id;
+  int active;
+  int exists;
+
+  char name[64];
+  char icon[16];
 } Workspace;
 
-const char* get_workspace_icon(const char* workspace_name)
-{
-    if (strcmp(workspace_name, "kitty") == 0)
-        return "";
+const char *get_workspace_icon(const char *workspace_name) {
+  if (strcmp(workspace_name, "kitty") == 0)
+    return "";
 
-    if (strcmp(workspace_name, "firefox") == 0)
-        return "󰈹";
+  if (strcmp(workspace_name, "firefox") == 0)
+    return "󰈹";
 
-    if (strcmp(workspace_name, "code") == 0)
-        return "󰨞";
+  if (strcmp(workspace_name, "code") == 0)
+    return "󰨞";
 
-    return "";
+  if (strcmp(workspace_name, "nvim") == 0)
+    return "";
+
+  if (strcmp(workspace_name, "minecraft") == 0)
+    return "󰍳";
+
+  return "";
 }
 
-int main()
-{
-    FILE *fp = popen("hyprctl clients -j", "r");
+Workspace *get_workspace(Workspace workspaces[], int id) {
+  if (id < 1 || id > 32)
+    return NULL;
 
-    if (!fp) {
-        perror("popen");
-        return 1;
+  return &workspaces[id];
+}
+
+/**
+ * Switches active workspace.
+ */
+void set_active_workspace(Workspace **current, Workspace *next) {
+  if (!next || !next->exists)
+    return;
+
+  if (*current)
+    (*current)->active = 0;
+
+  next->active = 1;
+  *current = next;
+}
+
+void create_workspace(Workspace workspaces[], int id) {
+  Workspace *ws = get_workspace(workspaces, id);
+
+  if (!ws)
+    return;
+
+  ws->id = id;
+  ws->exists = 1;
+}
+
+void destroy_workspace(Workspace workspaces[], int id) {
+  Workspace *ws = get_workspace(workspaces, id);
+
+  if (!ws)
+    return;
+
+  ws->id = 0;
+  ws->exists = 0;
+}
+
+void open_window(Workspace workspaces[], int workspace_id,
+                 const char *class_name) {
+  Workspace *ws = get_workspace(workspaces, workspace_id);
+
+  if (!ws || !ws->exists)
+    return;
+
+  strncpy(ws->name, class_name, sizeof(ws->name) - 1);
+
+  strncpy(ws->icon, get_workspace_icon(class_name), sizeof(ws->icon) - 1);
+}
+
+void parse_open_window_event(Workspace workspaces[], char *args) {
+  char *saveptr;
+
+  char *address = strtok_r(args, ",", &saveptr);
+
+  char *workspace = strtok_r(NULL, ",", &saveptr);
+
+  char *class_name = strtok_r(NULL, ",", &saveptr);
+
+  char *title = strtok_r(NULL, ",", &saveptr);
+
+  (void)address;
+  (void)title;
+
+  if (!workspace || !class_name)
+    return;
+
+  int workspace_id = atoi(workspace);
+
+  open_window(workspaces, workspace_id, class_name);
+}
+
+void render_workspaces(Workspace workspaces[]) {
+  char bar_text[512] = "";
+  char tmp[256];
+
+  for (int i = 1; i <= 32; i++) {
+
+    Workspace *ws = &workspaces[i];
+
+    if (!ws->exists)
+      continue;
+
+    if (ws->active)
+      snprintf(tmp, sizeof(tmp),
+               "<span foreground='#89b4fa'>"
+               "%s"
+               "</span> ",
+               ws->icon[0] ? ws->icon : "");
+    else
+      snprintf(tmp, sizeof(tmp), "%s ", ws->icon[0] ? ws->icon : "");
+
+    strcat(bar_text, tmp);
+  }
+
+  char bar_json[1024];
+
+  snprintf(bar_json, sizeof(bar_json), "{\"text\":\"%s\", \"markup\": true}",
+           bar_text);
+
+  printf("%s\n", bar_json);
+
+  fflush(stdout);
+}
+
+void handle_event(Workspace workspaces[], Workspace **active_workspace,
+                  char *line) {
+
+  if (strncmp(line, "workspace>>", 11) == 0) {
+
+    int id = atoi(line + 11);
+
+    Workspace *ws = get_workspace(workspaces, id);
+
+    set_active_workspace(active_workspace, ws);
+    render_workspaces(workspaces);
+
+    return;
+  }
+
+  if (strncmp(line, "createworkspace>>", 17) == 0) {
+
+    int id = atoi(line + 17);
+
+    create_workspace(workspaces, id);
+    render_workspaces(workspaces);
+
+    return;
+  }
+
+  if (strncmp(line, "destroyworkspace>>", 18) == 0) {
+
+    int id = atoi(line + 18);
+
+    destroy_workspace(workspaces, id);
+    render_workspaces(workspaces);
+
+    return;
+  }
+
+  if (strncmp(line, "openwindow>>", 12) == 0) {
+
+    parse_open_window_event(workspaces, line + 12);
+    render_workspaces(workspaces);
+
+    return;
+  }
+}
+
+int main() {
+  int sock = socket(AF_UNIX, SOCK_STREAM, 0);
+
+  if (sock < 0) {
+    perror("socket");
+    return 1;
+  }
+
+  const char *runtime = getenv("XDG_RUNTIME_DIR");
+
+  const char *signature = getenv("HYPRLAND_INSTANCE_SIGNATURE");
+
+  char path[512];
+
+  snprintf(path, sizeof(path), "%s/hypr/%s/.socket2.sock", runtime, signature);
+
+  struct sockaddr_un addr = {0};
+
+  addr.sun_family = AF_UNIX;
+
+  if (strlen(path) >= sizeof(addr.sun_path)) {
+    fprintf(stderr, "Socket path too long\n");
+    close(sock);
+    return 1;
+  }
+
+  strcpy(addr.sun_path, path);
+
+  if (connect(sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
+    perror("connect");
+    close(sock);
+    return 1;
+  }
+
+  Workspace workspaces[33] = {0};
+
+  Workspace *active_workspace = NULL;
+
+  char buffer[4096];
+
+  // Simulate initial addition of first workspace
+  handle_event(workspaces, &active_workspace, "createworkspace>>1");
+  handle_event(workspaces, &active_workspace, "workspace>>1");
+
+  while (1) {
+
+    ssize_t n = read(sock, buffer, sizeof(buffer) - 1);
+
+    if (n <= 0) {
+      printf("Socket closed\n");
+      break;
     }
 
-    char buffer[65536];
+    buffer[n] = '\0';
 
-    size_t len =
-        fread(buffer, 1, sizeof(buffer) - 1, fp);
+    char *saveptr;
 
-    buffer[len] = '\0';
+    char *line = strtok_r(buffer, "\n", &saveptr);
 
-    pclose(fp);
+    while (line) {
 
-    Workspace workspaces[32] = {0};
+      handle_event(workspaces, &active_workspace, line);
 
-    json_object *root =
-        json_tokener_parse(buffer);
-
-    if (!root) {
-        fprintf(stderr, "Failed to parse JSON\n");
-        return 1;
+      line = strtok_r(NULL, "\n", &saveptr);
     }
+  }
 
-    int count =
-        json_object_array_length(root);
+  close(sock);
 
-    for (int i = 0; i < count; i++) {
-
-        json_object *client =
-            json_object_array_get_idx(root, i);
-
-        json_object *class_obj;
-
-        if (!json_object_object_get_ex(
-                client,
-                "class",
-                &class_obj))
-            continue;
-
-        const char *class_name =
-            json_object_get_string(class_obj);
-
-        json_object *workspace_obj;
-
-        if (!json_object_object_get_ex(
-                client,
-                "workspace",
-                &workspace_obj))
-            continue;
-
-        json_object *id_obj;
-
-        if (!json_object_object_get_ex(
-                workspace_obj,
-                "id",
-                &id_obj))
-            continue;
-
-        int id =
-            json_object_get_int(id_obj);
-
-        if (id < 0 || id >= 32)
-            continue;
-
-        workspaces[id].id = id;
-        workspaces[id].name = class_name;
-        workspaces[id].icon =
-            get_workspace_icon(class_name);
-    }
-
-    FILE *active_fp = popen("hyprctl activeworkspace -j", "r");
-
-    if (!active_fp) {
-        perror("popen 2");
-        return 1;
-    }
-
-    len =
-        fread(buffer, 1, sizeof(buffer) - 1, active_fp);
-
-    buffer[len] = '\0';
-
-    pclose(active_fp);
-
-    json_object *active_root =
-        json_tokener_parse(buffer);
-
-    if (!active_root) {
-        fprintf(stderr, "Failed to parse JSON\n");
-        return 1;
-    }
-
-    json_object *active_id_obj;
-    if (json_object_object_get_ex(
-      active_root,
-      "id",
-      &active_id_obj)) {
-      int active_id = json_object_get_int(active_id_obj);
-
-      workspaces[active_id].active = 1;
-    }
-
-    char final_output[1024] = "";
-
-    for (int i = 0; i < 32; i++) {
-
-        if (workspaces[i].id == 0)
-            continue;
-
-        char temp[128];
-        
-        if(workspaces[i].active == 1) {
-          snprintf(
-              temp,
-              sizeof(temp),
-              "<span foreground=\\\"#89b4fa\\\">[%s %d]</span> ",
-              workspaces[i].icon,
-              workspaces[i].id
-          );
-          
-          strcat(final_output, temp);
-          continue;
-        }
-
-        snprintf(
-            temp,
-            sizeof(temp),
-            "%s %d ",
-            workspaces[i].icon,
-            workspaces[i].id
-        );
-
-        strcat(final_output, temp);
-    }
-
-    printf(
-        "{"
-        "\"text\":\"%s\","
-        "\"tooltip\":\"Custom Hyprland Workspaces\","
-        "\"class\":\"workspacebar\""
-        "}\n",
-        final_output
-    );
-
-    json_object_put(root);
-
-    return 0;
+  return 0;
 }

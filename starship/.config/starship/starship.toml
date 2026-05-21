@@ -1,0 +1,83 @@
+format = '''[](base)$os$username[](bg:peach fg:base)$directory[](bg:yellow fg:peach)$git_branch$git_status[](fg:yellow bg:lavender)${custom.cicon}[ ](fg:lavender)
+$character
+'''
+palette = 'catppuccin_latte'
+
+[character]
+disabled = false
+error_symbol = '[  󰁕](bold fg:red)'
+success_symbol = '[ 󱞪](bold fg:rosewater)'
+vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
+vimcmd_replace_symbol = '[❮](bold fg:lavender)'
+vimcmd_symbol = '[󱌑](bold fg:green)'
+vimcmd_visual_symbol = '[❮](bold fg:yellow)'
+
+[custom.cicon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:lavender fg:white'
+when = 'true'
+
+[directory]
+format = '[ $path ]($style)'
+style = 'bg:peach fg:crust'
+truncation_length = 2
+truncation_symbol = '…/'
+
+    [directory.substitutions]
+    Developer = '󰲋 '
+    Documents = '󰈙 '
+    Downloads = ' '
+    Music = '󰝚 '
+    Pictures = ' '
+
+[git_branch]
+format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
+style = 'bg:yellow'
+symbol = ''
+
+[git_status]
+format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
+style = 'bg:yellow'
+
+[os]
+disabled = false
+style = 'bg:base fg:blue'
+
+    [os.symbols]
+    Arch = '󰣇'
+    Artix = '󰣇'
+
+[palettes.catppuccin_latte]
+base = '#eff1f5'
+blue = '#1e66f5'
+crust = '#dce0e8'
+flamingo = '#dd7878'
+green = '#40a02b'
+lavender = '#7287fd'
+mantle = '#e6e9ef'
+maroon = '#e64553'
+mauve = '#8839ef'
+overlay0 = '#9ca0b0'
+overlay1 = '#8c8fa1'
+overlay2 = '#7c7f93'
+peach = '#fe640b'
+pink = '#ea76cb'
+red = '#d20f39'
+rosewater = '#dc8a78'
+sapphire = '#209fb5'
+sky = '#04a5e5'
+subtext0 = '#6c6f85'
+subtext1 = '#5c5f77'
+surface0 = '#ccd0da'
+surface1 = '#bcc0cc'
+surface2 = '#acb0be'
+teal = '#179299'
+text = '#4c4f69'
+yellow = '#df8e1d'
+
+[username]
+format = '[ $user]($style)'
+show_always = true
+style_root = 'bg:base fg:text'
+style_user = 'bg:base fg:text'

@@ -1,6 +1,5 @@
-format = '''[](base)$os$username[](bg:peach fg:base)$directory[](bg:yellow fg:peach)$git_branch$git_status[](fg:yellow bg:lavender)${custom.cicon}[ ](fg:lavender)
-$character
-'''
+format = '''[](base)$os$username[](bg:peach fg:base)$directory[](bg:yellow fg:peach)$git_branch$git_status[](fg:yellow bg:maroon)${custom.rusticon}[ ](fg:maroon)
+$character'''
 palette = 'catppuccin_latte'
 
 [character]
@@ -18,11 +17,17 @@ format = '[ $output ]($style)'
 style = 'bg:lavender fg:white'
 when = 'true'
 
+[custom.rusticon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:maroon fg:white'
+when = 'true'
+
 [directory]
 format = '[ $path ]($style)'
 style = 'bg:peach fg:crust'
 truncation_length = 2
-truncation_symbol = '…/'
+truncation_symbol = '.../'
 
     [directory.substitutions]
     Developer = '󰲋 '

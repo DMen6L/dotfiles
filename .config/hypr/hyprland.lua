@@ -9,17 +9,7 @@
 -- Create your files separately and then require them like this:
 -- require("myColors")
 
-------------------
----- MONITORS ----
-------------------
-
--- See https://wiki.hypr.land/Configuring/Basics/Monitors/
-hl.monitor({
-	output = "",
-	mode = "preferred",
-	position = "auto",
-	scale = "1.5",
-})
+require("monitors")
 
 ---------------------
 ---- MY PROGRAMS ----
@@ -81,8 +71,8 @@ hl.env("HYPRCURSOR_SIZE", "24")
 -- Refer to https://wiki.hypr.land/Configuring/Basics/Variables/
 hl.config({
 	general = {
-		gaps_in = 5,
-		gaps_out = 20,
+		gaps_in = 2,
+		gaps_out = 5,
 
 		border_size = 2,
 
@@ -212,10 +202,10 @@ hl.config({
 
 hl.config({
 	input = {
-		kb_layout = "us",
-		kb_variant = "",
+		kb_layout = "us,ru",
+		kb_variant = " ,winkeys",
 		kb_model = "",
-		kb_options = "",
+		kb_options = "grp:alt_shift_toggle",
 		kb_rules = "",
 
 		follow_mouse = 1,

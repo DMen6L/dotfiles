@@ -114,7 +114,7 @@ button:hover {
     color: #740864;
     padding: 0 5px;
     margin: 0 5px;
-    min-width: 16px;
+    min-width: 30px;
 }
 
 #keyboard-state {

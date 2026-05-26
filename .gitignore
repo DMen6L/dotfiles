@@ -1,1 +1,2 @@
-starship/.config/starship/build/
+.config/starship/build
+.config/waybar/scripts/workspace

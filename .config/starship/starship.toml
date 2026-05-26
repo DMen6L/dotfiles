@@ -1,4 +1,4 @@
-format = '''[](base)$os$username[](bg:peach fg:base)$directory[](bg:yellow fg:peach)$git_branch$git_status[](fg:yellow bg:maroon)${custom.rusticon}[ ](fg:maroon)
+format = '''[](base)$os$username[](bg:peach fg:base)$directory[](bg:yellow fg:peach)$git_branch$git_status[](fg:yellow bg:green)${custom.python_icon}[ ](fg:green)
 $character'''
 palette = 'catppuccin_latte'
 
@@ -11,13 +11,43 @@ vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_symbol = '[󱌑](bold fg:green)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
 
-[custom.cicon]
+[custom.c_icon]
 command = 'echo '
 format = '[ $output ]($style)'
 style = 'bg:lavender fg:white'
 when = 'true'
 
-[custom.rusticon]
+[custom.cpp_icon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:mauve fg:white'
+when = 'true'
+
+[custom.cs_icon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:blue fg:white'
+when = 'true'
+
+[custom.java_icon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:mantle fg:peach'
+when = 'true'
+
+[custom.js_icon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:yellow fg:black'
+when = 'true'
+
+[custom.python_icon]
+command = 'echo '
+format = '[ $output ]($style)'
+style = 'bg:green fg:white'
+when = 'true'
+
+[custom.rust_icon]
 command = 'echo '
 format = '[ $output ]($style)'
 style = 'bg:maroon fg:white'

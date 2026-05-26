@@ -12,7 +12,8 @@
         // "hyprland/window"
     ],
     "modules-center": [
-        "custom/workspaces"
+        // "custom/workspaces"
+        "hyprland/workspaces"
     ],
     "modules-right": [
         // "idle_inhibitor",
@@ -23,18 +24,18 @@
         "battery",
         "custom/power"
     ],
-    "custom/workspaces": {
-       "exec": "~/.config/waybar/scripts/workspace",
-       "return-type": "json",
-       "restart-interval": 1
-    },
+    //"custom/workspaces": {
+    //   "exec": "~/.config/waybar/scripts/workspace",
+    //   "return-type": "json",
+    //   "restart-interval": 1
+    //},
     // Modules configuration
      "hyprland/workspaces": {
          "disable-scroll": true,
          "all-outputs": true,
          "warp-on-scroll": false,
          "on-click": "activate",
-         "format": "{windows}",
+         "format": "{icon}",
          "format-icons": {
              "urgent": "",
              "active": "",
@@ -85,7 +86,7 @@
     "clock": {
         "interval": 1,
         "format": " {:%H:%M:%S}",
-        "timezone": "America/New_York",
+        "timezone": "Asia/Almaty",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -97,7 +98,9 @@
         "format": "{}% "
     },
     "hyprland/language": {
-        "format-en": "EN"
+        "format": "{short}",
+        // "format-en": "EN",
+        // "format-Russian": "RU"
     },
     "temperature": {
         // "thermal-zone": 2,

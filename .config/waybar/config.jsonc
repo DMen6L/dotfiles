@@ -11,6 +11,7 @@
         "format-icons": ["", "", "", "", ""]
     },
     "clock": {
+        "format": "{:%H:%M}",
         "format-alt": "{:%a, %d. %b  %H:%M}"
     },
     "pulseaudio": {
@@ -36,9 +37,9 @@
     "network": {
         "interface": "wlp0s20f3",
         "format": "{ifname}",
-        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-wifi": "{essid} ",
         "format-ethernet": "{ipaddr}/{cidr} 󰊗",
-        "format-disconnected": "", //An empty format will hide the module.
+        "format-disconnected": "󰖪",
         "tooltip-format": "{ifname} via {gwaddr} 󰊗",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
         "tooltip-format-ethernet": "{ifname} ",

@@ -21,18 +21,33 @@ tooltip label {
   color: white;
 }
 
+#workspaces {
+  padding: 2px 5px;
+}
+
 #workspaces button {
-    padding: 0 5px;
-    background: transparent;
+    padding: 2px 6px;
+    margin: 0 1px;
+    transition: all 200ms ease-in-out;
+    background: #121212;
     color: white;
     border-bottom: 3px solid transparent;
+    border-radius: 12px;
+}
+
+#workspaces button.active {
+  min-width: 40px;
+  background: white;
+  color: black;
 }
 
 #clock {
-    background-color: #64727D;
+    background: transparent;
 }
 
+#network,
+#pulseaudio,
 #battery {
-    background-color: #ffffff;
-    color: black;
+    color: white;
+    margin: 0 5px;
 }

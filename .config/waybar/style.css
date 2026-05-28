@@ -51,22 +51,32 @@ tooltip label {
 #workspaces button {
   padding: 0px 6px;
   margin: 0 1px;
-  transition: all 200ms ease-in-out;
   border-bottom: 3px solid transparent;
+  color: @bg2;
 }
 
 #workspaces button.active {
-  color: white;
+  color: @blue;
+  transition: none;
 }
 
-#clock {
-  padding: 0 5px;
+#clock,
+#clock#right {
+  margin: 0 10px;
+  font-size: 1.1rem;
   background: transparent;
+  color: @fg0;
 }
 
-#cava,
-#pulseaudio {
+#cava {
   color: @fg;
+  margin: 0 10px;
+  font-size: 0.6rem;
+  letter-spacing: 1px;
+}
+
+#pulseaudio {
+  color: @aqua;
   margin: 0 5px;
 }
 

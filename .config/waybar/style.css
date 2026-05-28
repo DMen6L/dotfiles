@@ -1,5 +1,8 @@
+@import "colors/colors.css";
+
 * {
     border: none;
+    border-radius: 0;
     font-family: "JetBrainsMono Nerd Font Propo";
     font-size: 14px;
 
@@ -23,26 +26,26 @@ tooltip label {
 
 .modules-left {
   padding-right: 5px;
-  background: black;
+  background: @bg0_h;
   border-radius: 0 15px 15px 0;
 }
 
 .modules-center {
   padding-right: 5px;
   padding-left: 5px;
-  background: black;
+  background: @bg0_h;
   border-radius: 15px;
 }
 
 .modules-right {
   padding-left: 5px;
-  background: black;
+  background: @bg0_h;
   border-radius: 15px 0 0 15px;
 }
 
 #workspaces {
   padding: 2px 5px;
-  background: #212121;
+  background: @bg0;
 }
 
 #workspaces button {
@@ -61,9 +64,18 @@ tooltip label {
   background: transparent;
 }
 
-#network,
-#pulseaudio,
+#cava,
+#pulseaudio {
+  color: @fg;
+  margin: 0 5px;
+}
+
+#network {
+  color: @fg0;
+  margin: 0 5px;
+}
+
 #battery {
-    color: white;
-    margin: 0 5px;
+  color: @green;
+  margin: 0 5px;
 }

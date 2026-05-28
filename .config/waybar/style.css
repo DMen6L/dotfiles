@@ -21,28 +21,44 @@ tooltip label {
   color: white;
 }
 
+.modules-left {
+  padding-right: 5px;
+  background: black;
+  border-radius: 0 15px 15px 0;
+}
+
+.modules-center {
+  padding-right: 5px;
+  padding-left: 5px;
+  background: black;
+  border-radius: 15px;
+}
+
+.modules-right {
+  padding-left: 5px;
+  background: black;
+  border-radius: 15px 0 0 15px;
+}
+
 #workspaces {
   padding: 2px 5px;
+  background: #212121;
 }
 
 #workspaces button {
-    padding: 2px 6px;
-    margin: 0 1px;
-    transition: all 200ms ease-in-out;
-    background: #121212;
-    color: white;
-    border-bottom: 3px solid transparent;
-    border-radius: 12px;
+  padding: 0px 6px;
+  margin: 0 1px;
+  transition: all 200ms ease-in-out;
+  border-bottom: 3px solid transparent;
 }
 
 #workspaces button.active {
-  min-width: 40px;
-  background: white;
-  color: black;
+  color: white;
 }
 
 #clock {
-    background: transparent;
+  padding: 0 5px;
+  background: transparent;
 }
 
 #network,

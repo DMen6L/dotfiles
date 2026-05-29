@@ -4,7 +4,7 @@
 
 local terminal = "kitty"
 local fileManager = "dolphin"
-local menu = "rofi -show drun"
+local menu = "~/.config/rofi/launchers/launcher.sh"
 local desktopLocker = "hyprlock"
 
 ---------------------

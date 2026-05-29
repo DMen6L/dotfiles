@@ -25,7 +25,6 @@ tooltip label {
 }
 
 .modules-left {
-  padding-right: 5px;
   background: @bg0_h;
   border-radius: 0 15px 15px 0;
 }
@@ -44,8 +43,8 @@ tooltip label {
 }
 
 #workspaces {
-  padding: 2px 5px;
-  background: @bg0;
+  padding: 0 5px;
+  background: transparent;
 }
 
 #workspaces button {

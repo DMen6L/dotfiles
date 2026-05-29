@@ -1,25 +1,23 @@
 {
     "layer": "top",
-    "modules-left": ["pulseaudio", "cava"],
-    "modules-center": ["clock", "hyprland/workspaces", "clock#right"],
-    "modules-right": ["network", "battery"],
-    "sway/window": {
-        "max-length": 50
-    },
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock", "clock#right"],
+    "modules-right": ["pulseaudio", "cava", "network", "battery"],
     "battery": {
         "bat": "BAT1",
         "interval": 60,
-        "format": "{capacity}% {icon}",
+        "format": "{icon} {capacity}%",
         "format-icons": {
             "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
         },
     },
     "clock": {
-        "format": "{:%H.H}",
+        "format": "{:%a-%d}",
+        "format-alt": "{:%Y-%m-%d}"
     },
     "clock#right": {
-        "format": "{:%M.M}",
+        "format": "{:%H:%M}",
     },
     "pulseaudio": {
         "format": "{icon} {volume}%",
@@ -66,12 +64,12 @@
     "network": {
         "interface": "wlp0s20f3",
         "format": "{ifname}",
-        "format-wifi": "{essid} ",
-        "format-ethernet": "{ipaddr}/{cidr} 󰊗",
+        "format-wifi": " {essid}",
+        "format-ethernet": "󰊗 {ipaddr}/{cidr}",
         "format-disconnected": "󰖪",
-        "tooltip-format": "{ifname} via {gwaddr} 󰊗",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
+        "tooltip-format": "󰊗 {ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{ essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": " {ifname}",
         "tooltip-format-disconnected": "Disconnected",
         "max-length": 50
     },

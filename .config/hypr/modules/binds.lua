@@ -5,7 +5,7 @@
 local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "~/.config/rofi/launchers/launcher.sh"
-local desktopLocker = "hyprlock"
+local desktopLocker = "~/.config/rofi/launchers/powermenu.sh"
 
 ---------------------
 ---- KEYBINDINGS ----

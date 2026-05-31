@@ -38,16 +38,15 @@
 
 .control-center .notification-row {
   margin: 0;
-  padding: 8px 12px;
+  padding: 2px 8px;
 }
 
 .control-center .notification-row .notification-background {
   background: @bg0;
   border-radius: 14px;
-  margin: 4px 0;
+  margin: 0;
   padding: 0;
   border: 1px solid @bg0_h;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .08);
   transition: all 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
@@ -59,13 +58,13 @@
 
 /* Critical notifications with accent */
 .control-center .notification-row .notification-background .notification.critical {
-  background: @bg1;
-  border-left: 3px solid @bg0;
+  background: @bg0;
+  border: 1px solid @fg1;
   border-radius: 14px;
 }
 
 .control-center .notification-row .notification-background .notification.critical .notification-content {
-  color: @bg1;
+  color: @fg;
 }
 
 /* Notification content spacing */
@@ -113,7 +112,7 @@
 .widget-title {
   font-size: 1em;
   font-weight: 600;
-  margin: 0;
+  margin: 20px 0;
   padding: 20px 20px 12px 20px;
   border-bottom: 1px solid @bg2;
 }
@@ -311,7 +310,6 @@
 .widget-mpris {
   background: transparent;
   border-radius: 0;
-  color: @fg1;
   margin: 0px 0px 0px 0px;
   padding: 10px;
   border-top: 1px solid @bg0;
@@ -333,7 +331,7 @@
 
 .widget-mpris-album-art {
   border-radius: 12px;
-  border: 1px solid @fg1;
+  border: none;
   margin: 0 12px 12px 0;
   min-width: 48px;
   min-height: 48px;

@@ -1,7 +1,6 @@
 @import '../colors/gruvbox.css';
 
 * {
-
   color: @fg;
 
   all: unset;
@@ -27,15 +26,15 @@
 
 .floating-notifications.background .notification-row .notification-background .notification {
   padding: 6px;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification.critical {
-  border: 2px solid @fg0;
+  border: 1px solid @fg1;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification .notification-content {
-  margin: 14px;
+  margin: 8px;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * {
@@ -44,28 +43,29 @@
 
 .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action {
   border-radius: 8px;
-  background-color: @bg1 ;
+  background-color: @bg0 ;
   margin: 6px;
   border: 1px solid transparent;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:hover {
-  background-color: @bg1;
-  border: 1px solid @bg4;
+  background-color: @bg0;
+  border: 1px solid @fg1;
 }
 
 .floating-notifications.background .notification-row .notification-background .notification > *:last-child > * .notification-action:active {
   background-color: @bg2;
-  color: @fg;
+  color: @fg0;
 }
 
 .image {
-  margin: 10px 20px 10px 10px;
+  margin: 10px;
 }
 
 .summary {
   font-weight: 800;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  color: @fg0;
 }
 
 .body {
@@ -73,8 +73,8 @@
 }
 
 .floating-notifications.background .notification-row .notification-background .close-button {
-  margin: 6px;
-  padding: 6px;
+  margin: 0;
+  padding: 0;
   border-radius: 6px;
   background-color: transparent;
   border: 1px solid transparent;
@@ -86,7 +86,7 @@
 
 .floating-notifications.background .notification-row .notification-background .close-button:active {
   background-color: @bg0;
-  color: @bg0;
+  color: @fg1;
 }
 
 .notification.critical progress {

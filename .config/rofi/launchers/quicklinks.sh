@@ -21,8 +21,8 @@ option_1=""
 option_2=""
 option_3=""
 option_4=""
-option_5=""
-option_6=""
+option_5=""
+option_6="󰀄"
 
 # Rofi CMD
 rofi_cmd() {
@@ -52,9 +52,9 @@ run_cmd() {
   elif [[ "$1" == '--opt4' ]]; then
     xdg-open 'https://www.github.com/'
   elif [[ "$1" == '--opt5' ]]; then
-    xdg-open 'https://www.reddit.com/'
+    xdg-open 'https://ru.linkedin.com//'
   elif [[ "$1" == '--opt6' ]]; then
-    xdg-open 'https://www.twitter.com/'
+    xdg-open 'https://hh.kz/'
   fi
 }
 

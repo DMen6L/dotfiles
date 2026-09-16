@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["hyprland/workspaces"],
     "modules-center": ["clock", "clock#right"],
-    "modules-right": ["pulseaudio", "cava", "network", "battery"],
+    "modules-right": ["pulseaudio", "network", "battery"],
     "battery": {
         "bat": "BAT1",
         "interval": 60,
@@ -37,30 +37,30 @@
         "on-click": "pavucontrol",
         "ignored-sinks": ["Easy Effects Sink"]
     },
-    "cava": {
-      // "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
-      "framerate": 30,
-      "autosens": 0,
-      "sensitivity": 3,
-      "bars": 14,
-      "lower_cutoff_freq": 50,
-      "higher_cutoff_freq": 10000,
-      "hide_on_silence": false,
-      // "format_silent": "quiet",
-      "method": "pulse",
-      "source": "auto",
-      "stereo": true,
-      "reverse": false,
-      "bar_delimiter": 0,
-      "monstercat": false,
-      "waves": false,
-      "noise_reduction": 0.17,
-      "input_delay": 2,
-      "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
-      "actions": {
-                "on-click-right": "mode"
-      }
-    },
+    // "cava": {
+    //   // "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+    //   "framerate": 30,
+    //   "autosens": 0,
+    //   "sensitivity": 3,
+    //   "bars": 14,
+    //   "lower_cutoff_freq": 50,
+    //   "higher_cutoff_freq": 10000,
+    //   "hide_on_silence": false,
+    //   // "format_silent": "quiet",
+    //   "method": "pulse",
+    //   "source": "auto",
+    //   "stereo": true,
+    //   "reverse": false,
+    //   "bar_delimiter": 0,
+    //   "monstercat": false,
+    //   "waves": false,
+    //   "noise_reduction": 0.17,
+    //   "input_delay": 2,
+    //   "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+    //   "actions": {
+    //             "on-click-right": "mode"
+    //   }
+    // },
     "network": {
         "interface": "wlp0s20f3",
         "format": "{ifname}",

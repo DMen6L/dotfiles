@@ -10,17 +10,7 @@ palette = "active"
 format = '''[](panel)$os$username[](fg:panel bg:panel_alt)$directory[](panel_alt) $git_branch$git_status$nodejs$python$rust$golang$lua$character'''
 
 [palettes.active]
-background = "#060b1f"
-panel = "#0a214f"
-panel_alt = "#163d78"
-text = "#d9e9f7"
-muted = "#8fa9c8"
-accent = "#d8ad62"
-accent_alt = "#23c8ec"
-success = "#4f997b"
-urgent = "#d66b7b"
-ornament_text = "#9edcff"
-shadow = "#060b1f"
+__THEME_PALETTE__
 
 [os]
 disabled = false

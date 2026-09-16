@@ -1,4 +1,4 @@
-@import '../colors/gruvbox.css';
+@import '../colors/active.css';
 
 * {
   color: @fg;
@@ -17,7 +17,7 @@
 
 .floating-notifications.background .notification-row .notification-background {
   background: @bg0;
-  box-shadow: 0 0 8px 0 rgba(0,0,0,.6);
+  box-shadow: 0 0 8px 0 alpha(@shadow, .6);
   border: 0px solid @bg0;
   border-radius: 24px;
   margin: 16px;

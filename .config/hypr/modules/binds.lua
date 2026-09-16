@@ -6,6 +6,7 @@ local terminal = "kitty"
 local fileManager = "dolphin"
 local menu = "~/.config/rofi/launchers/launcher.sh"
 local desktopLocker = "~/.config/rofi/launchers/powermenu.sh"
+local quicklinks = "~/.config/rofi/launchers/quicklinks.sh"
 
 ---------------------
 ---- KEYBINDINGS ----
@@ -26,7 +27,8 @@ hl.bind(mainMod .. " + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd(menu))
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo())
 hl.bind(mainMod .. " + T", hl.dsp.layout("togglesplit")) -- dwindle only
-hl.bind(mainMod .. " + D", hl.dsp.exec_cmd(desktopLocker))
+hl.bind(mainMod .. " + SHIFT + L", hl.dsp.exec_cmd(desktopLocker))
+hl.bind(mainMod .. " + SHIFT + Q", hl.dsp.exec_cmd(quicklinks))
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t"))
 
 -- Move focus with mainMod + arrow keys

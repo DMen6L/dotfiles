@@ -1,4 +1,4 @@
-@import '../colors/gruvbox.css';
+@import '../colors/active.css';
 
 * {
   color: @fg0;
@@ -20,9 +20,9 @@
   border-radius: 20px;
   border: 1px solid @bg0_h;
   box-shadow: 
-    0 10px 40px rgba(0, 0, 0, .25),
-    0 0 1px rgba(0, 0, 0, .3),
-    inset 0 1px 0 alpha(white, .05);
+    0 10px 40px alpha(@shadow, .25),
+    0 0 1px alpha(@shadow, .3),
+    inset 0 1px 0 alpha(@ornament, .05);
   margin: 12px;
   padding: 0;
 
@@ -53,7 +53,7 @@
 .control-center .notification-row .notification-background:hover {
   background: @bg0;
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+  box-shadow: 0 4px 12px alpha(@shadow, .12);
 }
 
 /* Critical notifications with accent */
@@ -124,14 +124,14 @@
   border: 1px solid @bg2;
   font-weight: 500;
   min-height: 36px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, .05);
+  box-shadow: 0 1px 3px alpha(@shadow, .05);
 }
 
 .widget-title button:hover {
   background: @bg2;
   border-color: @bg1;
   transform: translateY(-1px);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+  box-shadow: 0 2px 6px alpha(@shadow, .08);
 }
 
 .widget-title button:active {
@@ -155,7 +155,7 @@
   border: 1px solid @bg2;
   min-height: 64px;
   min-width: 64px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .04);
+  box-shadow: 0 2px 4px alpha(@shadow, .04);
   transition: all 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
@@ -163,14 +163,14 @@
   background: @bg2;
   border-color: @bg4;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, .12);
+  box-shadow: 0 4px 12px alpha(@shadow, .12);
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button:active {
   background: @bg2;
   border-color: @bg1;
   transform: scale(0.96);
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .08);
+  box-shadow: 0 2px 6px alpha(@shadow, .08);
 }
 
 .widget-buttons-grid > flowbox > flowboxchild > button:checked {
@@ -212,7 +212,7 @@
 .widget-backlight trough {
   background: @bg0_h;
   border-radius: 8px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+  box-shadow: inset 0 1px 3px alpha(@shadow, .1);
 }
 
 .widget-volume highlight, 
@@ -225,7 +225,7 @@
 .widget-volume label, 
 .widget-backlight label {
   font-size: 20px;
-  color: white;
+  color: @ornament;
   margin-right: 16px;
   margin-left: 8px;
   opacity: 0.9;
@@ -233,13 +233,13 @@
 
 .widget-volume slider, 
 .widget-backlight slider {
-  background: white;
+  background: @ornament;
   border-radius: 50%;
   min-height: 15px;
   min-width: 15px;
   margin: -5px 0;
   box-shadow: 
-    0 2px 6px rgba(0, 0, 0, .2),
+    0 2px 6px alpha(@shadow, .2),
     0 0 0 2px @bg2;
   transition: all 150ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
@@ -249,7 +249,7 @@
   min-height: 17px;
   min-width: 17px;
   box-shadow: 
-    0 3px 10px rgba(0, 0, 0, .3),
+    0 3px 10px alpha(@shadow, .3),
     0 0 0 3px @bg0;
 }
 
@@ -272,7 +272,7 @@
   padding: 3px;
   min-width: 36px;
   min-height: 20px;
-  box-shadow: inset 0 1px 3px rgba(0, 0, 0, .1);
+  box-shadow: inset 0 1px 3px alpha(@shadow, .1);
 }
 
 .widget-dnd > switch:hover {
@@ -284,7 +284,7 @@
   background: @fg;
   border-color: @bg0_h;
   box-shadow: 
-    inset 0 1px 3px rgba(0, 0, 0, .1),
+    inset 0 1px 3px alpha(@shadow, .1),
     0 0 8px @bg2;
 }
 
@@ -293,16 +293,16 @@
 }
 
 .widget-dnd > switch slider {
-  background: white;
+  background: @ornament;
   border-radius: 50%;
   min-width: 22px;
   min-height: 22px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  box-shadow: 0 2px 4px alpha(@shadow, .2);
   transition: all 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
 }
 
 .widget-dnd > switch:checked slider {
-  box-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+  box-shadow: 0 2px 6px alpha(@shadow, .3);
 }
 
 /* ==================== MEDIA PLAYER ==================== */
@@ -340,7 +340,7 @@
 .widget-mpris-title {
   font-weight: 600;
   font-size: 1rem;
-  color: #f2f2f2;
+  color: @ornament;
   margin-bottom: 4px;
   line-height: 1.3;
 }
@@ -353,7 +353,7 @@
 }
 
 .widget-mpris button {
-  color: #f2f2f2;
+  color: @ornament;
   opacity: 0.7;
   margin: 12px 6px 0 6px;
   min-width: 47px;
@@ -367,7 +367,7 @@
   background: transparent;
   border-color: @fg1;
   transform: scale(1.06);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+  box-shadow: 0 2px 8px alpha(@shadow, .15);
 }
 
 .widget-mpris button:active {
@@ -384,7 +384,7 @@
 .widget-mpris button:nth-child(3):hover {
   background: transparent;
   border-color: @fg1;
-  box-shadow: 0 4px 12px black;
+  box-shadow: 0 4px 12px alpha(@shadow, .8);
 }
 
 

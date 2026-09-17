@@ -24,22 +24,27 @@ local function resolve_profile(id)
 	end
 
 	local terminal = {}
+	local function terminal_color(reference)
+		local color = colors[reference] or palette[reference]
+		assert(color and color.hex, "missing terminal color: " .. reference)
+		return color
+	end
+
 	for key, role in pairs(profile.terminal) do
 		if key == "normal" or key == "bright" then
 			terminal[key] = {}
 			for index, terminal_role in ipairs(role) do
-				assert(colors[terminal_role], "missing terminal role: " .. terminal_role)
-				terminal[key][index] = colors[terminal_role]
+				terminal[key][index] = terminal_color(terminal_role)
 			end
 		else
-			assert(colors[role], "missing terminal role: " .. role)
-			terminal[key] = colors[role]
+			terminal[key] = terminal_color(role)
 		end
 	end
 
 	return {
 		id = profile.id,
 		name = profile.name,
+		palette = palette,
 		colors = colors,
 		terminal = terminal,
 		visuals = profile.visuals,

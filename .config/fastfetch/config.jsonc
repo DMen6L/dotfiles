@@ -1,0 +1,47 @@
+// Edit this layout; scripts/theme.lua generates config.jsonc from it.
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "source": "arch_small",
+    "color": {
+      "1": "#5cc4ff"
+    },
+    "padding": {
+      "top": 1,
+      "right": 2,
+      "bottom": 1
+    }
+  },
+  "display": {
+    "separator": " 󰅂 ",
+    "color": {
+      "keys": "#92cef5",
+      "title": "#92cef5",
+      "output": "#dfe3e7",
+      "separator": "#c1c7ce"
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    { "type": "os", "key": "󰣇  OS" },
+    { "type": "kernel", "key": "󰌽  Kernel" },
+    { "type": "wm", "key": "  WM" },
+    { "type": "terminal", "key": "  Terminal" },
+    "break",
+    { "type": "cpu", "key": "󰻠  CPU", "keyColor": "#5cc4ff" },
+    { "type": "memory", "key": "󰍛  Memory", "format": "{used} / {total}", "keyColor": "#5cc4ff" },
+    { "type": "uptime", "key": "󰅐  Uptime", "keyColor": "#54d341" },
+    { "type": "packages", "key": "󰏖  Packages", "combined": true, "keyColor": "#54d341" },
+    "break",
+    {
+      "type": "custom",
+      "format": "{##172d3e}██{##384b59}██{##596975}██{##7a8791}██{##9ca5ac}██{##bdc3c8}██{##dee1e3}██{##ffffff}██"
+    },
+    {
+      "type": "custom",
+      "format": "{##001e2e}██{##004c6c}██{##5cc4ff}██{##92cef5}██{##ffb4ab}██{##ccc1e9}██{##54d341}██{##969799}██"
+    },
+    "break"
+  ]
+}

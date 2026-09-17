@@ -7,14 +7,14 @@ palette = "active"
 
 # One-line Powerline prompt: identity and location stay in the fixed left
 # capsule; project-aware modules appear only when their project is detected.
-format = '''[](panel)$os$username[](fg:panel bg:panel_alt)$directory[](panel_alt) $git_branch$git_status$nodejs$python$rust$golang$lua$character'''
+format = '''[](prompt_identity_bg)$os$username[](fg:prompt_identity_bg bg:prompt_directory_bg)$directory[](prompt_directory_bg) $git_branch$git_status$nodejs$python$rust$golang$lua$character'''
 
 [palettes.active]
 __THEME_PALETTE__
 
 [os]
 disabled = false
-format = "[ $symbol ](bg:panel fg:ornament_text)"
+format = "[ $symbol ](bg:prompt_identity_bg fg:ornament_text)"
 
 [os.symbols]
 Arch = "󰣇"
@@ -23,12 +23,12 @@ Artix = "󰣇"
 [username]
 show_always = true
 format = "[ $user ]($style)"
-style_root = "bg:panel fg:urgent"
-style_user = "bg:panel fg:text"
+style_root = "bg:prompt_identity_bg fg:urgent"
+style_user = "bg:prompt_identity_bg fg:text"
 
 [directory]
 format = "[ $path ]($style)"
-style = "bg:panel_alt fg:text"
+style = "bg:prompt_directory_bg fg:text"
 truncation_length = 3
 truncation_symbol = "…/"
 

@@ -29,3 +29,11 @@ hl.window_rule({
 
 	no_focus = true,
 })
+
+hl.window_rule({
+	-- Keep Kitty transparent without blurring the wallpaper behind it.
+	name = "kitty-no-blur",
+	match = { class = "^kitty$" },
+
+	no_blur = true,
+})

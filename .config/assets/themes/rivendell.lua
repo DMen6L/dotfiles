@@ -8,17 +8,19 @@ return {
 	},
 
 	roles = {
-		background = "void",
-		panel = "bark",
-		panelAlt = "stone",
-		text = "parchment",
-		muted = "mist",
-		accent = "gold",
-		accentAlt = "elven",
-		success = "moss",
-		urgent = "ruby",
-		ornamentText = "moonlight",
-		shadow = "void",
+		background = "background",
+		panel = "surface_container",
+		panelAlt = "surface_container_high",
+		text = "on_surface",
+		muted = "on_surface_variant",
+		accent = "primary",
+		accentAlt = "base0d",
+		success = "base0b",
+		urgent = "error",
+		ornamentText = "on_primary_container",
+		shadow = "shadow",
+		promptIdentity = "on_primary",
+		promptDirectory = "primary_container",
 	},
 
 	terminal = {
@@ -29,12 +31,12 @@ return {
 		selectionBackground = "panelAlt",
 		selectionForeground = "text",
 		normal = {
-			"background", "urgent", "success", "accent",
-			"accentAlt", "muted", "accentAlt", "text",
+			"base00", "base08", "base0b", "base0a",
+			"base0d", "base0e", "base0c", "base05",
 		},
 		bright = {
-			"panelAlt", "urgent", "success", "accent",
-			"accentAlt", "muted", "accentAlt", "text",
+			"base03", "base08", "base0b", "base0a",
+			"base0d", "base0e", "base0c", "base07",
 		},
 	},
 

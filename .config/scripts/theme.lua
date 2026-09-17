@@ -188,9 +188,62 @@ local function render_starship(selected)
 		table.insert(palette_lines, name .. ' = "' .. hex(selected.colors[role]) .. '"')
 	end
 
+	local prompt_backgrounds = {
+		{ name = "prompt_identity_bg", role = "promptIdentity" },
+		{ name = "prompt_directory_bg", role = "promptDirectory" },
+	}
+	for _, prompt_background in ipairs(prompt_backgrounds) do
+		local color = selected.colors[prompt_background.role]
+		assert(color and color.hex, "missing Starship prompt color: " .. prompt_background.role)
+		table.insert(palette_lines, prompt_background.name .. ' = "' .. hex(color) .. '"')
+	end
+
 	local layout = read_file(root .. "/starship/layout.toml")
 	local output, replacements = layout:gsub("__THEME_PALETTE__", table.concat(palette_lines, "\n"))
 	assert(replacements == 1, "starship layout must contain exactly one __THEME_PALETTE__ marker")
+	return output
+end
+
+local function fastfetch_palette_swatches(palette)
+	local swatch_rows = {
+		{ "base00", "base01", "base02", "base03", "base04", "base05", "base06", "base07" },
+		{ "error", "tertiary_container", "base0a", "base0b", "primary", "primary_container", "tertiary", "base0f" },
+	}
+	local rows = {}
+
+	for row_index, swatch_row in ipairs(swatch_rows) do
+		local swatches = {}
+		for _, palette_key in ipairs(swatch_row) do
+			local color = palette[palette_key]
+			assert(color and color.hex, "missing Fastfetch palette color: " .. palette_key)
+			table.insert(swatches, "{#" .. hex(color) .. "}██")
+		end
+		rows[row_index] = table.concat(swatches)
+	end
+
+	return rows
+end
+
+local function render_fastfetch(selected)
+	local colors = selected.colors
+	local swatch_rows = fastfetch_palette_swatches(selected.palette)
+	local replacements = {
+		{ marker = "__FASTFETCH_ACCENT__", value = hex(colors.accent) },
+		{ marker = "__FASTFETCH_ACCENT_ALT__", value = hex(colors.accentAlt) },
+		{ marker = "__FASTFETCH_TEXT__", value = hex(colors.text) },
+		{ marker = "__FASTFETCH_MUTED__", value = hex(colors.muted) },
+		{ marker = "__FASTFETCH_SUCCESS__", value = hex(colors.success) },
+		{ marker = "__FASTFETCH_PALETTE_TOP__", value = swatch_rows[1] },
+		{ marker = "__FASTFETCH_PALETTE_BOTTOM__", value = swatch_rows[2] },
+	}
+
+	local output = read_file(root .. "/fastfetch/layout.jsonc")
+	for _, replacement in ipairs(replacements) do
+		local count
+		output, count = output:gsub(replacement.marker, replacement.value)
+		assert(count > 0, "fastfetch layout is missing marker: " .. replacement.marker)
+	end
+
 	return output
 end
 
@@ -263,6 +316,7 @@ local function output_files(selected)
 		{ path = root .. "/swaync/colors/active.css", content = render_swaync(selected) },
 		{ path = root .. "/kitty/themes/active.conf", content = render_kitty(selected) },
 		{ path = root .. "/starship/starship.toml", content = render_starship(selected) },
+		{ path = root .. "/fastfetch/config.jsonc", content = render_fastfetch(selected) },
 		{ path = root .. "/starship/zsh-theme.zsh", content = render_zsh_highlighting(selected) },
 	}
 end

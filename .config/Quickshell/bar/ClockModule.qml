@@ -43,6 +43,16 @@ Item {
         anchors.centerIn: parent
         width: Theme.Metrics.centerLogoGap
         height: parent.height
+
+        Image {
+            anchors.centerIn: parent
+            width: Theme.Metrics.centerLogoSize
+            height: width
+            source: Theme.Assets.centerLogo
+            fillMode: Image.PreserveAspectFit
+            smooth: true
+            asynchronous: true
+        }
     }
 
     Item {

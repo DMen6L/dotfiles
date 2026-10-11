@@ -13,7 +13,7 @@ hl.config({
 		border_size = 1,
 
 		col = {
-			active_border = { colors = { theme.rgba("accentAlt", 0.93) } },
+			active_border = { colors = { theme.rgba("accent", 0.93) } },
 			inactive_border = theme.rgba("panelAlt", 0.67),
 		},
 

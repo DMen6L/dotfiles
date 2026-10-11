@@ -1,90 +1,86 @@
-@import "colors/colors.css";
+@import "colors/mocha.css";
 
 * {
-    border: none;
-    border-radius: 0;
     font-family: "JetBrainsMono Nerd Font Propo";
     font-size: 14px;
-
     min-height: 0;
     margin: 0;
     padding: 0;
+    border: none;
+    border-radius: 0;
+    background-image: none;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
+    animation: none;
 }
 
-window#waybar {
-    background: transparent;
-    color: white;
-}
+window#waybar { background: transparent; color: @text; }
 
-tooltip {
-  background: rgba(43, 48, 59, 0.5);
-  border: 1px solid rgba(100, 114, 125, 0.5);
-}
-tooltip label {
-  color: white;
-}
-
-.modules-left {
-  background: @bg0_h;
-  border-radius: 0 15px 15px 0;
-}
-
-.modules-center {
-  padding-right: 5px;
-  padding-left: 5px;
-  background: @bg0_h;
-  border-radius: 15px;
-}
-
+/* Native module containers form the three islands. */
+.modules-left,
+.modules-center,
 .modules-right {
-  padding-left: 5px;
-  background: @bg0_h;
-  border-radius: 15px 0 0 15px;
+    min-height: 32px;
+    background: @mantle;
+    border: 1px solid @surface0;
+    border-radius: 17px;
+    padding: 0 8px;
 }
 
-#workspaces {
-  padding: 0 5px;
-  background: transparent;
-}
+.modules-center { padding: 0 14px; }
+
+#custom-arch { color: @blue; font-size: 17px; padding: 0 8px; }
 
 #workspaces button {
-  padding: 0px 6px;
-  margin: 0 1px;
-  border-bottom: 3px solid transparent;
-  color: @bg2;
+    min-width: 22px;
+    min-height: 22px;
+    margin: 4px 2px;
+    background: transparent;
+    color: @subtext0;
+    border: 1px solid transparent;
+    border-radius: 12px;
 }
 
+#workspaces button label { font-size: 12px; }
+#workspaces button.empty { color: @overlay0; }
+#workspaces button:hover { background: @surface0; color: @text; }
 #workspaces button.active {
-  color: @blue;
-  transition: none;
+    background: @lavender;
+    color: @base;
+    border-color: @lavender;
+    font-weight: bold;
 }
+#workspaces button.urgent { background: @red; color: @base; border-color: @red; }
 
-#clock,
-#clock#right {
-  margin: 0 10px;
-  font-size: 1.1rem;
-  background: transparent;
-  color: @fg0;
-}
+#clock { min-width: 48px; color: @text; font-weight: bold; }
 
-#cava {
-  color: @fg;
-  margin: 0 10px;
-  font-size: 0.6rem;
-  letter-spacing: 1px;
-}
+#language,
+#network,
+#pulseaudio,
+#battery,
+#tray { padding: 0 6px; }
 
-#pulseaudio {
-  color: @aqua;
-  margin: 0 5px;
-}
+#language { color: @pink; font-size: 12px; }
+#network { color: @sapphire; }
+#pulseaudio { color: @teal; }
+#battery { color: @green; }
+#tray { color: @subtext0; }
+#network.disconnected,
+#network.disabled,
+#pulseaudio.muted { color: @overlay1; }
+#battery.warning { color: @yellow; }
+#battery.critical { color: @red; }
 
-#network {
-  color: @fg0;
-  margin: 0 5px;
+tooltip,
+menu {
+    background: @base;
+    color: @text;
+    border: 1px solid @surface1;
+    border-radius: 8px;
 }
-
-#battery {
-  color: @green;
-  margin: 0 5px;
-}
+/* GTK paints a separate decoration behind the rounded tooltip. */
+tooltip decoration { border-radius: 8px; }
+tooltip label { padding: 6px 10px; color: @text; }
+menuitem { padding: 4px 8px; }
+menuitem:hover { background: @surface0; }

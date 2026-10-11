@@ -15,6 +15,7 @@ return {
 		muted = "on_surface_variant",
 		accent = "primary",
 		accentAlt = "base0d",
+		widgetBorder = "primary_container",
 		success = "base0b",
 		urgent = "error",
 		ornamentText = "on_primary_container",
@@ -28,8 +29,8 @@ return {
 		foreground = "text",
 		cursor = "accentAlt",
 		cursorText = "background",
-		selectionBackground = "panelAlt",
-		selectionForeground = "text",
+    selectionBackground = "primary",
+    selectionForeground = "on_primary",
 		normal = {
 			"base00", "base08", "base0b", "base0a",
 			"base0d", "base0e", "base0c", "base05",

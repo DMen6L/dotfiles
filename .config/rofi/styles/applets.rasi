@@ -66,7 +66,7 @@ textbox-prompt-colon {
     str:                         "";
     padding:                     10px 13px ;
     border-radius:               6px;
-    background-color:            @urgent;
+    background-color:            @selected;
     text-color:                  @background;
 }
 prompt {
@@ -136,13 +136,13 @@ element alternate.normal {
 }
 element normal.urgent,
 element alternate.urgent,
-element selected.active {
+element selected.urgent {
     background-color:            var(urgent);
     text-color:                  var(background);
 }
 element normal.active,
 element alternate.active,
-element selected.urgent {
+element selected.active {
     background-color:            var(active);
     text-color:                  var(background);
 }

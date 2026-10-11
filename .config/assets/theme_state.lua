@@ -1,3 +1,3 @@
 return {
-	active = "rivendell",
+	active = "catppuccin-mocha",
 }

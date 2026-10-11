@@ -23,6 +23,20 @@ local function resolve_profile(id)
 		colors[role] = color
 	end
 
+	-- Profiles without dedicated functional colors retain their existing accents.
+	local role_defaults = {
+		warning = "accent", info = "accentAlt",
+		date = "accentAlt", time = "accentAlt", language = "accentAlt",
+		network = "accentAlt", audio = "accentAlt",
+		runtimeNode = "success", runtimePython = "accentAlt", runtimeRust = "accent",
+		runtimeGo = "success", runtimeLua = "accentAlt",
+		promptIdentityText = "ornamentText",
+		promptDirectoryText = "text",
+	}
+	for role, fallback in pairs(role_defaults) do
+		colors[role] = colors[role] or colors[fallback]
+	end
+
 	local terminal = {}
 	local function terminal_color(reference)
 		local color = colors[reference] or palette[reference]

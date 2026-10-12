@@ -3,9 +3,10 @@ return {
     "catppuccin/nvim",
     name = "catppuccin",
     opts = {
-      transparent_background = true,
+      kitty = false,
+      transparent_background = false,
       float = {
-        transparent = true,
+        transparent = false,
       },
     },
   },
